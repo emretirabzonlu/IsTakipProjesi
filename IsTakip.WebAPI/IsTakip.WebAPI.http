@@ -1,0 +1,6 @@
+@IsTakip.WebAPI_HostAddress = http://localhost:5075
+
+GET {{IsTakip.WebAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
