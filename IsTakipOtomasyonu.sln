@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IsTakip.Business", "IsTakip
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IsTakip.WebAPI", "IsTakip.WebAPI\IsTakip.WebAPI.csproj", "{65791899-3D4D-4077-9744-256C010E74F6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IsTakip.UI", "IsTakip.UI\IsTakip.UI.csproj", "{EC4C279F-6F23-4D7D-824B-BEF4EE482269}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{65791899-3D4D-4077-9744-256C010E74F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{65791899-3D4D-4077-9744-256C010E74F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{65791899-3D4D-4077-9744-256C010E74F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC4C279F-6F23-4D7D-824B-BEF4EE482269}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC4C279F-6F23-4D7D-824B-BEF4EE482269}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC4C279F-6F23-4D7D-824B-BEF4EE482269}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC4C279F-6F23-4D7D-824B-BEF4EE482269}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
