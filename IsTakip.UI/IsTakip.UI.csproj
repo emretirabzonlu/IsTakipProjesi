@@ -13,6 +13,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\IsTakip.Business\IsTakip.Business.csproj" />
+    <ProjectReference Include="..\IsTakip.DataAccess\IsTakip.DataAccess.csproj" />
     <ProjectReference Include="..\IsTakip.Entities\IsTakip.Entities.csproj" />
   </ItemGroup>
 

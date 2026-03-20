@@ -38,5 +38,20 @@ namespace IsTakip.WebAPI.Controllers
             _gorevService.GorevSil(gorev);
             return Ok("Görev Silindi");
         }
+
+        [HttpGet("{id}")]
+        public IActionResult GetById(int id)
+        {
+            var value = _gorevService.GetById(id);
+            if (value == null) return NotFound("Görev bulunamadı");
+            return Ok(value);
+        }
+
+        [HttpPut]
+        public IActionResult Guncelle(Gorev g)
+        {
+            _gorevService.GorevGuncelle(g);
+            return Ok("Görev Güncellendi");
+        }
     }
 }

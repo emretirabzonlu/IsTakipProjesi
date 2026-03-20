@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace IsTakip.Entities
 {
     public class Rol : BaseEntity
     {
-        public string Ad { get; set; }
-        public string Kod { get; set; } // admin, user vs.
+        public string Ad { get; set; } // "Admin", "Kullanıcı", "Yönetici"
 
-        public virtual ICollection<Personel> Personeller { get; set; }
+        [JsonIgnore]
+        public virtual List<Personel>? Personeller { get; set; }
     }
 }

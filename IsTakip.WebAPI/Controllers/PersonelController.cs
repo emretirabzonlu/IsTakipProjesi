@@ -32,5 +32,30 @@ namespace IsTakip.WebAPI.Controllers
             _personelService.PersonelEkle(p);
             return Ok("Personel Başarıyla Eklendi");
         }
+
+        [HttpGet("{id}")]
+        public IActionResult GetById(int id)
+        {
+            var value = _personelService.GetById(id);
+            if (value == null) return NotFound("Personel bulunamadı");
+            return Ok(value);
+        }
+
+        [HttpPut]
+        public IActionResult Guncelle(Personel p)
+        {
+            _personelService.PersonelGuncelle(p);
+            return Ok("Personel Güncellendi");
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Sil(int id)
+        {
+            var value = _personelService.GetById(id);
+            if (value == null) return NotFound("Personel bulunamadı");
+            _personelService.PersonelSil(value);
+            return Ok("Personel Silindi");
+        }
     }
+
 }

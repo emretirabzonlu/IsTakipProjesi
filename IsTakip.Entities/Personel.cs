@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization; // Bunu eklemeyi unutma
+﻿using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace IsTakip.Entities
 {
@@ -11,12 +12,14 @@ namespace IsTakip.Entities
         public string Sifre { get; set; }
 
         public int DepartmanId { get; set; }
-
-        // DİKKAT: "Departman?" yaptık (Soru işaretine dikkat!)
         [JsonIgnore]
         public virtual Departman? Departman { get; set; }
 
-        // DİKKAT: "List<Gorev>?" yaptık
+        // YENİ: Rol
+        public int RolId { get; set; }
+        [JsonIgnore]
+        public virtual Rol? Rol { get; set; }
+
         [JsonIgnore]
         public virtual List<Gorev>? Gorevler { get; set; }
     }

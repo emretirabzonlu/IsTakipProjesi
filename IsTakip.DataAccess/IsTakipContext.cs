@@ -16,48 +16,52 @@ namespace IsTakip.Business
         public DbSet<Gorev> Gorevler { get; set; }
         public DbSet<Musteri> Musteriler { get; set; }
         public DbSet<Proje> Projeler { get; set; }
+        public DbSet<GorevDurum> GorevDurumlar { get; set; }
+        public DbSet<GorevYorum> GorevYorumlar { get; set; }
+        public DbSet<Rol> Roller { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            // Buradaki Server adresini kendi bilgisayarına göre ayarla
-            // SQL Express ise: Server=.\SQLEXPRESS veya Server=(localdb)\mssqllocaldb
-            // Tam SQL ise: Server=. veya Server=localhost
             optionsBuilder.UseSqlServer("Server=.;Database=IsTakipDb;Integrated Security=true;TrustServerCertificate=True");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // --------------- PERSONEL TABLOSU AYARLARI ---------------
-            // 1. Primary Key'i açıkça belirtiyoruz
             modelBuilder.Entity<Personel>().HasKey(p => p.Id);
-
-            // 2. Alan özelliklerini (Constraints) belirtiyoruz
-            modelBuilder.Entity<Personel>().Property(p => p.Ad).HasMaxLength(50).IsRequired(); // NVARCHAR(50), NOT NULL
+            modelBuilder.Entity<Personel>().Property(p => p.Ad).HasMaxLength(50).IsRequired();
             modelBuilder.Entity<Personel>().Property(p => p.Soyad).HasMaxLength(50).IsRequired();
             modelBuilder.Entity<Personel>().Property(p => p.Email).HasMaxLength(100);
+            modelBuilder.Entity<Personel>().Property(p => p.Sifre).HasMaxLength(100);
 
-            // 3. İlişkileri açıkça belirtiyoruz (Best Practice)
-            // "Bir personelin bir departmanı vardır, bir departmanın çok personeli vardır."
             modelBuilder.Entity<Personel>()
                 .HasOne(p => p.Departman)
                 .WithMany(d => d.Personeller)
                 .HasForeignKey(p => p.DepartmanId)
-                .OnDelete(DeleteBehavior.Restrict); // ÖNEMLİ: Departman silinirse personeller silinmesin! (Güvenlik)
+                .OnDelete(DeleteBehavior.Restrict);
 
+            modelBuilder.Entity<Personel>()
+                .HasOne(p => p.Rol)
+                .WithMany(r => r.Personeller)
+                .HasForeignKey(p => p.RolId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             // --------------- GÖREV TABLOSU AYARLARI ---------------
             modelBuilder.Entity<Gorev>().HasKey(g => g.Id);
-
             modelBuilder.Entity<Gorev>().Property(g => g.Baslik).HasMaxLength(200).IsRequired();
-            modelBuilder.Entity<Gorev>().Property(g => g.Aciklama).HasColumnType("ntext"); // Uzun metinler için
+            modelBuilder.Entity<Gorev>().Property(g => g.Aciklama).HasColumnType("ntext");
 
-            // İlişki: Personel silinirse görevler ne olsun?
             modelBuilder.Entity<Gorev>()
                 .HasOne(g => g.Personel)
                 .WithMany(p => p.Gorevler)
                 .HasForeignKey(g => g.PersonelId)
-                .OnDelete(DeleteBehavior.Cascade); // Personel silinirse görevleri de silinsin (veya Restrict yapabilirsin)
+                .OnDelete(DeleteBehavior.Cascade);
 
+            modelBuilder.Entity<Gorev>()
+                .HasOne(g => g.GorevDurum)
+                .WithMany(gd => gd.Gorevler)
+                .HasForeignKey(g => g.GorevDurumId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             // --------------- DEPARTMAN TABLOSU AYARLARI ---------------
             modelBuilder.Entity<Departman>().HasKey(d => d.Id);
@@ -71,13 +75,35 @@ namespace IsTakip.Business
             modelBuilder.Entity<Proje>().HasKey(p => p.Id);
             modelBuilder.Entity<Proje>().Property(p => p.ProjeAdi).HasMaxLength(100).IsRequired();
 
-            // İLİŞKİ: Bir Müşterinin Çok Projesi Olur
             modelBuilder.Entity<Proje>()
                 .HasOne(p => p.Musteri)
                 .WithMany(m => m.Projeler)
                 .HasForeignKey(p => p.MusteriId)
-                .OnDelete(DeleteBehavior.Restrict); // Müşteri silinirse projeleri silinmesin, hata versin.
+                .OnDelete(DeleteBehavior.Restrict);
 
+            // --------------- GÖREV DURUM ---------------
+            modelBuilder.Entity<GorevDurum>().HasKey(gd => gd.Id);
+            modelBuilder.Entity<GorevDurum>().Property(gd => gd.Ad).HasMaxLength(50).IsRequired();
+
+            // --------------- GÖREV YORUM ---------------
+            modelBuilder.Entity<GorevYorum>().HasKey(gy => gy.Id);
+            modelBuilder.Entity<GorevYorum>().Property(gy => gy.Icerik).HasMaxLength(500).IsRequired();
+
+            modelBuilder.Entity<GorevYorum>()
+                .HasOne(gy => gy.Gorev)
+                .WithMany(g => g.Yorumlar)
+                .HasForeignKey(gy => gy.GorevId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<GorevYorum>()
+                .HasOne(gy => gy.Personel)
+                .WithMany()
+                .HasForeignKey(gy => gy.PersonelId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            // --------------- ROL ---------------
+            modelBuilder.Entity<Rol>().HasKey(r => r.Id);
+            modelBuilder.Entity<Rol>().Property(r => r.Ad).HasMaxLength(50).IsRequired();
 
             base.OnModelCreating(modelBuilder);
         }
