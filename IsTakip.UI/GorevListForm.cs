@@ -18,6 +18,45 @@ namespace IsTakip.UI
         {
             GorevleriListele();
             ComboBoxlariDoldur();
+            // ===== GÜZELLEŞTİRME =====
+            this.BackColor = Color.FromArgb(240, 240, 245);
+            this.Font = new Font("Segoe UI", 9);
+
+            // DataGridView
+            dgvGorevler.BackgroundColor = Color.White;
+            dgvGorevler.BorderStyle = BorderStyle.None;
+            dgvGorevler.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dgvGorevler.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dgvGorevler.DefaultCellStyle.SelectionBackColor = Color.FromArgb(0, 120, 215);
+            dgvGorevler.DefaultCellStyle.SelectionForeColor = Color.White;
+            dgvGorevler.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(0, 120, 215);
+            dgvGorevler.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dgvGorevler.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 9, FontStyle.Bold);
+            dgvGorevler.EnableHeadersVisualStyles = false;
+            dgvGorevler.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvGorevler.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvGorevler.ReadOnly = true;
+
+
+            // Butonlar
+            btnEkle.BackColor = Color.FromArgb(0, 120, 215);
+            btnEkle.ForeColor = Color.White;
+            btnEkle.FlatStyle = FlatStyle.Flat;
+            btnEkle.FlatAppearance.BorderSize = 0;
+
+            btnGuncelle.BackColor = Color.FromArgb(255, 165, 0);
+            btnGuncelle.ForeColor = Color.White;
+            btnGuncelle.FlatStyle = FlatStyle.Flat;
+            btnGuncelle.FlatAppearance.BorderSize = 0;
+
+            btnSil.BackColor = Color.FromArgb(220, 53, 69);
+            btnSil.ForeColor = Color.White;
+            btnSil.FlatStyle = FlatStyle.Flat;
+            btnSil.FlatAppearance.BorderSize = 0;
+            btnYorumlar.BackColor = Color.FromArgb(111, 66, 193);
+            btnYorumlar.ForeColor = Color.White;
+            btnYorumlar.FlatStyle = FlatStyle.Flat;
+            btnYorumlar.FlatAppearance.BorderSize = 0;
         }
 
         private void GorevleriListele()
@@ -141,6 +180,21 @@ namespace IsTakip.UI
                 Temizle();
                 MessageBox.Show("Görev silindi!");
             }
+        }
+
+        private void btnYorumlar_Click(object sender, EventArgs e)
+        {
+            if (dgvGorevler.CurrentRow == null)
+            {
+                MessageBox.Show("Lütfen bir görev seçin!");
+                return;
+            }
+
+            int gorevId = Convert.ToInt32(dgvGorevler.CurrentRow.Cells["Id"].Value);
+            string baslik = dgvGorevler.CurrentRow.Cells["Baslik"].Value.ToString();
+
+            GorevYorumForm yorumForm = new GorevYorumForm(gorevId, baslik);
+            yorumForm.ShowDialog();
         }
 
         private void dgvGorevler_CellClick(object sender, DataGridViewCellEventArgs e)

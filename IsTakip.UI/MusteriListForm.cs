@@ -16,6 +16,41 @@ namespace IsTakip.UI
         private void MusteriListForm_Load(object sender, EventArgs e)
         {
             Listele();
+
+            // ===== GÜZELLEŞTİRME =====
+            this.BackColor = Color.FromArgb(240, 240, 245);
+            this.Font = new Font("Segoe UI", 9);
+
+            // DataGridView
+            dgvMusteriler.BackgroundColor = Color.White;
+            dgvMusteriler.BorderStyle = BorderStyle.None;
+            dgvMusteriler.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dgvMusteriler.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dgvMusteriler.DefaultCellStyle.SelectionBackColor = Color.FromArgb(0, 120, 215);
+            dgvMusteriler.DefaultCellStyle.SelectionForeColor = Color.White;
+            dgvMusteriler.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(0, 120, 215);
+            dgvMusteriler.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dgvMusteriler.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 9, FontStyle.Bold);
+            dgvMusteriler.EnableHeadersVisualStyles = false;
+            dgvMusteriler.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvMusteriler.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvMusteriler.ReadOnly = true;
+
+            // Butonlar
+            btnEkle.BackColor = Color.FromArgb(0, 120, 215);
+            btnEkle.ForeColor = Color.White;
+            btnEkle.FlatStyle = FlatStyle.Flat;
+            btnEkle.FlatAppearance.BorderSize = 0;
+
+            btnGuncelle.BackColor = Color.FromArgb(255, 165, 0);
+            btnGuncelle.ForeColor = Color.White;
+            btnGuncelle.FlatStyle = FlatStyle.Flat;
+            btnGuncelle.FlatAppearance.BorderSize = 0;
+
+            btnSil.BackColor = Color.FromArgb(220, 53, 69);
+            btnSil.ForeColor = Color.White;
+            btnSil.FlatStyle = FlatStyle.Flat;
+            btnSil.FlatAppearance.BorderSize = 0;
         }
 
         private void Listele()

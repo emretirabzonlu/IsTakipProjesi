@@ -13,6 +13,7 @@ namespace IsTakip.UI
 
         private void AnaForm_Load(object sender, EventArgs e)
         {
+            this.BackColor = Color.FromArgb(45, 45, 48);
             var personel = LoginForm.GirisYapanPersonel;
             if (personel != null)
             {
@@ -25,6 +26,10 @@ namespace IsTakip.UI
                     lblRol.Text = "Rol: " + (rol != null ? rol.Ad : "-");
                 }
             }
+
+            this.BackColor = Color.FromArgb(45, 45, 48);
+            // Dashboard'ı otomatik aç
+            ChildFormAc(new DashboardForm());
         }
 
         private void ChildFormAc(Form childForm)
@@ -71,5 +76,16 @@ namespace IsTakip.UI
         {
             Application.Exit();
         }
+
+        private void AnaForm_Load_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dashboardToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ChildFormAc(new DashboardForm());
+        }
+
     }
 }

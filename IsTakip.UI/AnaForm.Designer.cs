@@ -38,13 +38,14 @@
             lblKullanici = new ToolStripStatusLabel();
             lblTarih = new ToolStripStatusLabel();
             lblRol = new ToolStripStatusLabel();
+            dashboardToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             statusStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
             // 
-            menuStrip1.Items.AddRange(new ToolStripItem[] { görevlerToolStripMenuItem, personelToolStripMenuItem, müşterilerToolStripMenuItem, departmanlarToolStripMenuItem, projelerToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { görevlerToolStripMenuItem, personelToolStripMenuItem, müşterilerToolStripMenuItem, departmanlarToolStripMenuItem, projelerToolStripMenuItem, dashboardToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(800, 24);
@@ -113,6 +114,13 @@
             lblRol.Size = new Size(12, 17);
             lblRol.Text = "-";
             // 
+            // dashboardToolStripMenuItem
+            // 
+            dashboardToolStripMenuItem.Name = "dashboardToolStripMenuItem";
+            dashboardToolStripMenuItem.Size = new Size(76, 20);
+            dashboardToolStripMenuItem.Text = "Dashboard";
+            dashboardToolStripMenuItem.Click += dashboardToolStripMenuItem_Click;
+            // 
             // AnaForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -126,6 +134,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "İş Takip Otomasyonu";
             WindowState = FormWindowState.Maximized;
+            Load += AnaForm_Load_1;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             statusStrip1.ResumeLayout(false);
@@ -146,5 +155,6 @@
         private ToolStripStatusLabel lblKullanici;
         private ToolStripStatusLabel lblTarih;
         private ToolStripStatusLabel lblRol;
+        private ToolStripMenuItem dashboardToolStripMenuItem;
     }
 }

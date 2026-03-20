@@ -41,6 +41,7 @@
             label2 = new Label();
             label3 = new Label();
             label1 = new Label();
+            btnYorumlar = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvGorevler).BeginInit();
             groupBox1.SuspendLayout();
             SuspendLayout();
@@ -58,6 +59,7 @@
             // 
             groupBox1.Controls.Add(btnSil);
             groupBox1.Controls.Add(btnGuncelle);
+            groupBox1.Controls.Add(btnYorumlar);
             groupBox1.Controls.Add(btnEkle);
             groupBox1.Controls.Add(cmbDurum);
             groupBox1.Controls.Add(cmbPersonel);
@@ -173,6 +175,16 @@
             label1.TabIndex = 0;
             label1.Text = "Başlık";
             // 
+            // btnYorumlar
+            // 
+            btnYorumlar.Location = new Point(464, 165);
+            btnYorumlar.Name = "btnYorumlar";
+            btnYorumlar.Size = new Size(75, 23);
+            btnYorumlar.TabIndex = 3;
+            btnYorumlar.Text = "Yorumlar";
+            btnYorumlar.UseVisualStyleBackColor = true;
+            btnYorumlar.Click += btnEkle_Click;
+            // 
             // GorevListForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -204,5 +216,6 @@
         private Button btnSil;
         private Button btnGuncelle;
         private Button btnEkle;
+        private Button btnYorumlar;
     }
 }

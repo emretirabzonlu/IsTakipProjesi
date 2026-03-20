@@ -18,6 +18,41 @@ namespace IsTakip.UI
         {
             Listele();
             ComboBoxlariDoldur();
+
+            // ===== GÜZELLEŞTİRME =====
+            this.BackColor = Color.FromArgb(240, 240, 245);
+            this.Font = new Font("Segoe UI", 9);
+
+            // DataGridView
+            dgvProjeler.BackgroundColor = Color.White;
+            dgvProjeler.BorderStyle = BorderStyle.None;
+            dgvProjeler.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dgvProjeler.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dgvProjeler.DefaultCellStyle.SelectionBackColor = Color.FromArgb(0, 120, 215);
+            dgvProjeler.DefaultCellStyle.SelectionForeColor = Color.White;
+            dgvProjeler.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(0, 120, 215);
+            dgvProjeler.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dgvProjeler.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 9, FontStyle.Bold);
+            dgvProjeler.EnableHeadersVisualStyles = false;
+            dgvProjeler.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvProjeler.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvProjeler.ReadOnly = true;
+
+            // Butonlar
+            btnEkle.BackColor = Color.FromArgb(0, 120, 215);
+            btnEkle.ForeColor = Color.White;
+            btnEkle.FlatStyle = FlatStyle.Flat;
+            btnEkle.FlatAppearance.BorderSize = 0;
+
+            btnGuncelle.BackColor = Color.FromArgb(255, 165, 0);
+            btnGuncelle.ForeColor = Color.White;
+            btnGuncelle.FlatStyle = FlatStyle.Flat;
+            btnGuncelle.FlatAppearance.BorderSize = 0;
+
+            btnSil.BackColor = Color.FromArgb(220, 53, 69);
+            btnSil.ForeColor = Color.White;
+            btnSil.FlatStyle = FlatStyle.Flat;
+            btnSil.FlatAppearance.BorderSize = 0;
         }
 
         private void Listele()
